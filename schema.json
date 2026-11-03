@@ -1,0 +1,18 @@
+{
+  "default_conclusion": "Gitar akustik",
+  "attributes": {
+    "budget":             {"type": "numeric", "min": 0, "max": 30000000, "unit": "Rp"},
+    "umur":               {"type": "numeric", "min": 4, "max": 80},
+    "jam_latihan":        {"type": "numeric", "min": 0, "max": 40, "unit": "jam/minggu"},
+    "genre":              {"type": "categorical", "values": ["pop", "rock", "jazz", "klasik", "edm"]},
+    "tempat_tinggal":     {"type": "categorical", "values": ["rumah", "kos"]},
+    "nyanyi_sambil_main": {"type": "categorical", "values": ["ya", "tidak"]},
+    "punya_laptop":       {"type": "categorical", "values": ["ya", "tidak"]}
+  },
+  "conclusions": [
+    "Gitar akustik", "Gitar akustik 3/4", "Ukulele",
+    "Gitar elektrik + amplifier", "Gitar elektrik + headphone amp",
+    "Keyboard 61 tuts", "Digital piano 88 tuts",
+    "MIDI keyboard", "Keyboard portabel"
+  ]
+}

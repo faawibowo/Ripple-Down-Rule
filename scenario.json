@@ -1,0 +1,136 @@
+{
+  "description": "Skenario uji RDR rekomendasi alat musik untuk pemula, dijalankan berurutan dari KB kosong (hanya rule R: t -> Gitar akustik).",
+  "steps": [
+    {
+      "no": 1,
+      "case": {"budget": 3000000, "umur": 20, "jam_latihan": 5, "genre": "pop", "tempat_tinggal": "rumah", "nyanyi_sambil_main": "ya", "punya_laptop": "ya"},
+      "expected_system": {"conclusion": "Gitar akustik", "fired_node_id": 0, "last_node_id": 0, "last_satisfied": true},
+      "expert_agrees": true
+    },
+    {
+      "no": 2,
+      "case": {"budget": 5000000, "umur": 20, "jam_latihan": 6, "genre": "rock", "tempat_tinggal": "rumah", "nyanyi_sambil_main": "tidak", "punya_laptop": "ya"},
+      "expected_system": {"conclusion": "Gitar akustik", "fired_node_id": 0, "last_node_id": 0, "last_satisfied": true},
+      "expert_agrees": false,
+      "expert_conclusion": "Gitar elektrik + amplifier",
+      "chosen_conditions": [{"attr": "genre", "op": "=", "value": "rock"}],
+      "expected_new_node": {"id": 1, "parent_id": 0, "branch": "true"}
+    },
+    {
+      "no": 3,
+      "case": {"budget": 5000000, "umur": 20, "jam_latihan": 6, "genre": "rock", "tempat_tinggal": "kos", "nyanyi_sambil_main": "tidak", "punya_laptop": "ya"},
+      "expected_system": {"conclusion": "Gitar elektrik + amplifier", "fired_node_id": 1, "last_node_id": 1, "last_satisfied": true},
+      "expert_agrees": false,
+      "expert_conclusion": "Gitar elektrik + headphone amp",
+      "chosen_conditions": [{"attr": "tempat_tinggal", "op": "=", "value": "kos"}],
+      "expected_new_node": {"id": 2, "parent_id": 1, "branch": "true"}
+    },
+    {
+      "no": 4,
+      "case": {"budget": 1500000, "umur": 19, "jam_latihan": 4, "genre": "rock", "tempat_tinggal": "rumah", "nyanyi_sambil_main": "tidak", "punya_laptop": "ya"},
+      "expected_system": {"conclusion": "Gitar elektrik + amplifier", "fired_node_id": 1, "last_node_id": 2, "last_satisfied": false},
+      "expert_agrees": false,
+      "expert_conclusion": "Gitar akustik",
+      "chosen_conditions": [{"attr": "budget", "op": "<=", "value": 1500000}],
+      "expected_new_node": {"id": 3, "parent_id": 2, "branch": "false"}
+    },
+    {
+      "no": 5,
+      "case": {"budget": 4000000, "umur": 22, "jam_latihan": 8, "genre": "edm", "tempat_tinggal": "kos", "nyanyi_sambil_main": "tidak", "punya_laptop": "ya"},
+      "expected_system": {"conclusion": "Gitar akustik", "fired_node_id": 0, "last_node_id": 1, "last_satisfied": false},
+      "expert_agrees": false,
+      "expert_conclusion": "MIDI keyboard",
+      "chosen_conditions": [{"attr": "genre", "op": "=", "value": "edm"}],
+      "expected_new_node": {"id": 4, "parent_id": 1, "branch": "false"}
+    },
+    {
+      "no": 6,
+      "case": {"budget": 4000000, "umur": 22, "jam_latihan": 8, "genre": "edm", "tempat_tinggal": "kos", "nyanyi_sambil_main": "tidak", "punya_laptop": "tidak"},
+      "expected_system": {"conclusion": "MIDI keyboard", "fired_node_id": 4, "last_node_id": 4, "last_satisfied": true},
+      "expert_agrees": false,
+      "expert_conclusion": "Keyboard portabel",
+      "chosen_conditions": [{"attr": "punya_laptop", "op": "=", "value": "tidak"}],
+      "expected_new_node": {"id": 5, "parent_id": 4, "branch": "true"}
+    },
+    {
+      "no": 7,
+      "case": {"budget": 2000000, "umur": 8, "jam_latihan": 3, "genre": "pop", "tempat_tinggal": "rumah", "nyanyi_sambil_main": "ya", "punya_laptop": "tidak"},
+      "expected_system": {"conclusion": "Gitar akustik", "fired_node_id": 0, "last_node_id": 4, "last_satisfied": false},
+      "expert_agrees": false,
+      "expert_conclusion": "Gitar akustik 3/4",
+      "chosen_conditions": [{"attr": "umur", "op": "<=", "value": 12}],
+      "note": "Threshold diedit pakar dari umur <= 8 menjadi umur <= 12",
+      "expected_new_node": {"id": 6, "parent_id": 4, "branch": "false"}
+    },
+    {
+      "no": 8,
+      "case": {"budget": 8000000, "umur": 25, "jam_latihan": 10, "genre": "klasik", "tempat_tinggal": "rumah", "nyanyi_sambil_main": "tidak", "punya_laptop": "ya"},
+      "expected_system": {"conclusion": "Gitar akustik", "fired_node_id": 0, "last_node_id": 6, "last_satisfied": false},
+      "expert_agrees": false,
+      "expert_conclusion": "Digital piano 88 tuts",
+      "chosen_conditions": [{"attr": "genre", "op": "=", "value": "klasik"}],
+      "expected_new_node": {"id": 7, "parent_id": 6, "branch": "false"}
+    },
+    {
+      "no": 9,
+      "case": {"budget": 2000000, "umur": 25, "jam_latihan": 5, "genre": "klasik", "tempat_tinggal": "kos", "nyanyi_sambil_main": "tidak", "punya_laptop": "ya"},
+      "expected_system": {"conclusion": "Digital piano 88 tuts", "fired_node_id": 7, "last_node_id": 7, "last_satisfied": true},
+      "expert_agrees": false,
+      "expert_conclusion": "Keyboard 61 tuts",
+      "chosen_conditions": [{"attr": "budget", "op": "<=", "value": 3000000}],
+      "note": "Threshold diedit pakar dari budget <= 2000000 menjadi budget <= 3000000",
+      "expected_new_node": {"id": 8, "parent_id": 7, "branch": "true"}
+    },
+    {
+      "no": 10,
+      "case": {"budget": 6000000, "umur": 19, "jam_latihan": 6, "genre": "rock", "tempat_tinggal": "kos", "nyanyi_sambil_main": "tidak", "punya_laptop": "ya"},
+      "expected_system": {"conclusion": "Gitar elektrik + headphone amp", "fired_node_id": 2, "last_node_id": 2, "last_satisfied": true},
+      "expert_agrees": true
+    },
+    {
+      "no": 11,
+      "case": {"budget": 1000000, "umur": 20, "jam_latihan": 3, "genre": "pop", "tempat_tinggal": "kos", "nyanyi_sambil_main": "ya", "punya_laptop": "tidak"},
+      "expected_system": {"conclusion": "Gitar akustik", "fired_node_id": 0, "last_node_id": 7, "last_satisfied": false},
+      "expert_agrees": false,
+      "expert_conclusion": "Ukulele",
+      "chosen_conditions": [{"attr": "budget", "op": "<", "value": 1500000}],
+      "note": "Threshold diedit pakar dari budget <= 1000000 menjadi budget < 1500000",
+      "expected_new_node": {"id": 9, "parent_id": 7, "branch": "false"}
+    },
+    {
+      "no": 12,
+      "case": {"budget": 1200000, "umur": 20, "jam_latihan": 4, "genre": "rock", "tempat_tinggal": "kos", "nyanyi_sambil_main": "tidak", "punya_laptop": "ya"},
+      "expected_system": {"conclusion": "Gitar elektrik + headphone amp", "fired_node_id": 2, "last_node_id": 2, "last_satisfied": true},
+      "expert_agrees": false,
+      "expert_conclusion": "Gitar akustik",
+      "chosen_conditions": [{"attr": "budget", "op": "<=", "value": 1500000}],
+      "note": "Threshold diedit pakar dari budget <= 1200000 menjadi budget <= 1500000",
+      "expected_new_node": {"id": 10, "parent_id": 2, "branch": "true"}
+    }
+  ],
+  "expected_final_tree": {
+    "id": 0, "conditions": [], "conclusion": "Gitar akustik",
+    "true_child": {
+      "id": 1, "conditions": [{"attr": "genre", "op": "=", "value": "rock"}], "conclusion": "Gitar elektrik + amplifier",
+      "true_child": {
+        "id": 2, "conditions": [{"attr": "tempat_tinggal", "op": "=", "value": "kos"}], "conclusion": "Gitar elektrik + headphone amp",
+        "true_child": {"id": 10, "conditions": [{"attr": "budget", "op": "<=", "value": 1500000}], "conclusion": "Gitar akustik", "true_child": null, "false_child": null},
+        "false_child": {"id": 3, "conditions": [{"attr": "budget", "op": "<=", "value": 1500000}], "conclusion": "Gitar akustik", "true_child": null, "false_child": null}
+      },
+      "false_child": {
+        "id": 4, "conditions": [{"attr": "genre", "op": "=", "value": "edm"}], "conclusion": "MIDI keyboard",
+        "true_child": {"id": 5, "conditions": [{"attr": "punya_laptop", "op": "=", "value": "tidak"}], "conclusion": "Keyboard portabel", "true_child": null, "false_child": null},
+        "false_child": {
+          "id": 6, "conditions": [{"attr": "umur", "op": "<=", "value": 12}], "conclusion": "Gitar akustik 3/4",
+          "true_child": null,
+          "false_child": {
+            "id": 7, "conditions": [{"attr": "genre", "op": "=", "value": "klasik"}], "conclusion": "Digital piano 88 tuts",
+            "true_child": {"id": 8, "conditions": [{"attr": "budget", "op": "<=", "value": 3000000}], "conclusion": "Keyboard 61 tuts", "true_child": null, "false_child": null},
+            "false_child": {"id": 9, "conditions": [{"attr": "budget", "op": "<", "value": 1500000}], "conclusion": "Ukulele", "true_child": null, "false_child": null}
+          }
+        }
+      }
+    },
+    "false_child": null
+  }
+}

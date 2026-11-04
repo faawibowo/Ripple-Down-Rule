@@ -5,6 +5,13 @@ merekomendasikan alat musik kepada pelanggan pemula. Pengetahuan tidak ditulis d
 dibangun bertahap: sistem dimulai dari satu rule default, lalu pakar menambah rule perkecualian
 setiap kali rekomendasi sistem dianggap salah.
 
+## Anggota kelompok
+
+| Nama | NIM |
+|---|---|
+| Muhammad Farrel Wibowo | 13523153 |
+| Mahesa Fadhilah Andre | 13523140 |
+
 ## Cara kerja singkat
 
 - KB berupa **pohon biner**. Setiap node punya kondisi (gabungan AND), kesimpulan, dan
